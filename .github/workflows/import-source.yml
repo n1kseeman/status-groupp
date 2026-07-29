@@ -16,11 +16,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Replace repository with source project
+      - name: Import source while preserving workflow permissions
         run: |
-          cp status-groupp-project.zip /tmp/status-groupp-project.zip
-          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-          unzip -q /tmp/status-groupp-project.zip -d .
+          mkdir -p /tmp/status-groupp-source
+          unzip -q status-groupp-project.zip -d /tmp/status-groupp-source
+          find . -mindepth 1 -maxdepth 1 ! -name .git ! -name .github -exec rm -rf {} +
+          rsync -a --exclude='.github/' /tmp/status-groupp-source/ .
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add -A
