@@ -59,7 +59,8 @@ export function InteractiveShell() {
               совершеннолетнего возраста. Сведения носят информационный характер.
             </p>
             <button className="button button-primary" onClick={confirmAge}>
-              Мне исполнилось 18 лет <span>→</span>
+              Мне исполнилось 18 лет
+              <span className="arrow-icon arrow-icon-right" aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -106,7 +107,8 @@ export function InteractiveShell() {
             </span>
           </label>
           <button className="button button-primary" type="submit">
-            Сформировать письмо <span>↗</span>
+            Сформировать письмо
+            <span className="arrow-icon" aria-hidden="true" />
           </button>
           <a
             className="button button-whatsapp"
