@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import "./globals.css";
@@ -45,6 +45,13 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#f7efdc",
+};
+
 function Wordmark() {
   return (
     <Link className="wordmark" href="/" aria-label="Status Groupp — главная">
@@ -83,7 +90,8 @@ export default function RootLayout({
           </nav>
           <span className="age-mark">18+</span>
           <button className="header-price" data-price-request>
-            Получить прайс <span>↗</span>
+            Получить прайс
+            <span className="arrow-icon" aria-hidden="true" />
           </button>
           <details className="mobile-menu">
             <summary aria-label="Открыть меню">
