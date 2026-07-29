@@ -40,7 +40,8 @@ export default function PartnersPage() {
             региональной дистрибуции.
           </p>
           <button className="button button-primary" data-price-request>
-            Обсудить сотрудничество <span>↗</span>
+            Обсудить сотрудничество
+            <span className="arrow-icon" aria-hidden="true" />
           </button>
         </div>
       </section>
@@ -93,10 +94,10 @@ export default function PartnersPage() {
           <a href="mailto:sales1@status-groupp.ru">sales1@status-groupp.ru</a>
         </div>
         <button className="button button-light" data-price-request>
-          Получить прайс <span>↗</span>
+          Получить прайс
+          <span className="arrow-icon" aria-hidden="true" />
         </button>
       </section>
     </main>
   );
 }
-
