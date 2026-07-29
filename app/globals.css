@@ -1819,12 +1819,21 @@ h2 em {
   }
 
   .site-header {
+    isolation: isolate;
     height: calc(76px + env(safe-area-inset-top));
     padding: env(safe-area-inset-top) 16px 0;
     border-bottom-color: rgba(24, 55, 41, 0.16);
-    background: rgba(247, 239, 220, 0.97);
-    box-shadow: 0 -32px 0 #f7efdc;
-    backdrop-filter: blur(22px) saturate(135%);
+    background: #f7efdc;
+    backdrop-filter: none;
+  }
+
+  .site-header::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -100vh 0 0;
+    background: #f7efdc;
+    pointer-events: none;
   }
 
   .wordmark {
