@@ -34,10 +34,10 @@ export default function CatalogPage() {
           <h2>Запросите актуальный прайс-лист</h2>
         </div>
         <button className="button button-light" data-price-request>
-          Получить прайс <span>↗</span>
+          Получить прайс
+          <span className="arrow-icon" aria-hidden="true" />
         </button>
       </section>
     </main>
   );
 }
-
