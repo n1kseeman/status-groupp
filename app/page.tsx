@@ -18,7 +18,8 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <Link className="button button-primary" href="/catalog">
-              Познакомиться с брендами <span>↗</span>
+              Познакомиться с брендами
+              <span className="arrow-icon" aria-hidden="true" />
             </Link>
             <button className="button button-ghost" data-price-request>
               Получить прайс-лист
@@ -53,7 +54,7 @@ export default function Home() {
         <span className="brand-ribbon-intro">
           Открывайте
           <br />
-          новые вкусы →
+          новые вкусы <span className="arrow-icon arrow-icon-right" aria-hidden="true" />
         </span>
         {brands.map((brand) => (
           <Link href={`/brands/${brand.slug}`} key={brand.slug}>
@@ -92,7 +93,8 @@ export default function Home() {
               <h3>{brand.name}</h3>
               <p>{brand.short}</p>
               <Link href={`/brands/${brand.slug}`}>
-                История и ассортимент <span>↗</span>
+                История и ассортимент
+                <span className="arrow-icon" aria-hidden="true" />
               </Link>
             </div>
           </article>
@@ -103,7 +105,7 @@ export default function Home() {
         <div className="story-visual">
           <div className="story-stamp">
             <span>Asia</span>
-            <strong>→</strong>
+            <span className="arrow-icon arrow-icon-right" aria-hidden="true" />
             <span>Russia</span>
           </div>
         </div>
@@ -133,7 +135,8 @@ export default function Home() {
             </div>
           </div>
           <Link className="text-link" href="/partners">
-            Узнать о сотрудничестве <span>↗</span>
+            Узнать о сотрудничестве
+            <span className="arrow-icon" aria-hidden="true" />
           </Link>
         </div>
       </section>
@@ -147,7 +150,8 @@ export default function Home() {
             <em>до новых вкусов.</em>
           </h2>
           <Link className="button button-outline" href="/catalog">
-            Весь каталог <span>↗</span>
+            Весь каталог
+            <span className="arrow-icon" aria-hidden="true" />
           </Link>
         </div>
         <div className="featured-card featured-card-main">
@@ -197,7 +201,8 @@ export default function Home() {
             поможет подобрать позиции под формат бизнеса.
           </p>
           <button className="button button-light" data-price-request>
-            Получить прайс-лист <span>↗</span>
+            Получить прайс-лист
+            <span className="arrow-icon" aria-hidden="true" />
           </button>
         </div>
       </section>
