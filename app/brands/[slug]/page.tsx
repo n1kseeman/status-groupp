@@ -49,7 +49,8 @@ export default async function BrandPage({
             </span>
           </div>
           <button className="button button-primary" data-price-request>
-            Запросить прайс <span>↗</span>
+            Запросить прайс
+            <span className="arrow-icon" aria-hidden="true" />
           </button>
         </div>
         <div className="brand-hero-media">
@@ -77,7 +78,8 @@ export default async function BrandPage({
             <h2>Позиции {brand.name}</h2>
           </div>
           <Link className="text-link" href="/catalog">
-            Весь каталог <span>↗</span>
+            Весь каталог
+            <span className="arrow-icon" aria-hidden="true" />
           </Link>
         </div>
         <div className="brand-product-grid">
@@ -110,7 +112,8 @@ export default async function BrandPage({
             продаж Status Groupp.
           </p>
           <button className="button button-light" data-price-request>
-            Получить прайс-лист <span>↗</span>
+            Получить прайс-лист
+            <span className="arrow-icon" aria-hidden="true" />
           </button>
         </div>
       </section>
