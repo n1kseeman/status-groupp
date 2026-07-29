@@ -40,7 +40,8 @@ export default function ContactsPage() {
               target="_blank"
               rel="noreferrer"
             >
-              Написать в WhatsApp <span>↗</span>
+              Написать в WhatsApp
+              <span className="arrow-icon" aria-hidden="true" />
             </a>
             <button className="button button-outline" data-price-request>
               Запросить прайс
@@ -71,4 +72,3 @@ export default function ContactsPage() {
     </main>
   );
 }
-
