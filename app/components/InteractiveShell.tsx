@@ -1,19 +1,46 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const AGE_STORAGE_KEY = "status-groupp-age";
+const AGE_CHANGE_EVENT = "status-groupp-age-change";
+
+function subscribeToAgeConfirmation(onChange: () => void) {
+  window.addEventListener("storage", onChange);
+  window.addEventListener(AGE_CHANGE_EVENT, onChange);
+  return () => {
+    window.removeEventListener("storage", onChange);
+    window.removeEventListener(AGE_CHANGE_EVENT, onChange);
+  };
+}
+
+function getAgeConfirmation() {
+  return window.localStorage.getItem(AGE_STORAGE_KEY) === "confirmed";
+}
 
 export function InteractiveShell() {
-  const [ageVisible, setAgeVisible] = useState(false);
+  const ageConfirmed = useSyncExternalStore(
+    subscribeToAgeConfirmation,
+    getAgeConfirmation,
+    () => false,
+  );
   const [sent, setSent] = useState(false);
+  const ageDialog = useRef<HTMLDialogElement>(null);
   const priceDialog = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    if (window.localStorage.getItem("status-groupp-age") !== "confirmed") {
-      setAgeVisible(true);
-    }
+    const dialog = ageDialog.current;
+    if (!dialog) return;
 
+    if (ageConfirmed) {
+      if (dialog.open) dialog.close();
+    } else if (!dialog.open) {
+      dialog.showModal();
+    }
+  }, [ageConfirmed]);
+
+  useEffect(() => {
     const openPrice = (event: Event) => {
       const target = event.target as HTMLElement;
       const button = target.closest("[data-price-request]");
@@ -27,8 +54,8 @@ export function InteractiveShell() {
   }, []);
 
   const confirmAge = () => {
-    window.localStorage.setItem("status-groupp-age", "confirmed");
-    setAgeVisible(false);
+    window.localStorage.setItem(AGE_STORAGE_KEY, "confirmed");
+    window.dispatchEvent(new Event(AGE_CHANGE_EVENT));
   };
 
   const submitRequest = (event: FormEvent<HTMLFormElement>) => {
@@ -48,25 +75,28 @@ export function InteractiveShell() {
 
   return (
     <>
-      {ageVisible && (
-        <div className="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-title">
-          <div className="age-gate-card">
-            <span className="age-gate-mark">18+</span>
-            <p className="eyebrow">Status Groupp</p>
-            <h2 id="age-title">Подтвердите возраст</h2>
-            <p>
-              Сайт содержит информацию, не рекомендованную лицам, не достигшим
-              совершеннолетнего возраста. Сведения носят информационный характер.
-            </p>
-            <button className="button button-primary" onClick={confirmAge}>
-              Мне исполнилось 18 лет
-              <span className="arrow-icon arrow-icon-right" aria-hidden="true" />
-            </button>
-          </div>
+      <dialog
+        className="age-gate"
+        ref={ageDialog}
+        aria-labelledby="age-title"
+        onCancel={(event) => event.preventDefault()}
+      >
+        <div className="age-gate-card">
+          <span className="age-gate-mark">18+</span>
+          <p className="eyebrow">Status Groupp</p>
+          <h2 id="age-title">Подтвердите возраст</h2>
+          <p>
+            Сайт содержит информацию, не рекомендованную лицам, не достигшим
+            совершеннолетнего возраста. Сведения носят информационный характер.
+          </p>
+          <button className="button button-primary" onClick={confirmAge}>
+            Мне исполнилось 18 лет
+            <span className="arrow-icon arrow-icon-right" aria-hidden="true" />
+          </button>
         </div>
-      )}
+      </dialog>
 
-      <dialog className="price-dialog" ref={priceDialog}>
+      <dialog className="price-dialog" ref={priceDialog} aria-labelledby="price-title">
         <button
           className="dialog-close"
           onClick={() => priceDialog.current?.close()}
@@ -75,7 +105,7 @@ export function InteractiveShell() {
           ×
         </button>
         <p className="eyebrow">Актуальные оптовые условия</p>
-        <h2>Получить прайс-лист</h2>
+        <h2 id="price-title">Получить прайс-лист</h2>
         <p>
           Оставьте данные — письмо сформируется в вашем почтовом приложении.
           Можно также сразу написать в WhatsApp.
@@ -118,7 +148,11 @@ export function InteractiveShell() {
           >
             Написать в WhatsApp
           </a>
-          {sent && <p className="form-status">Письмо сформировано — проверьте почтовое приложение.</p>}
+          {sent && (
+            <p className="form-status" aria-live="polite">
+              Письмо сформировано — проверьте почтовое приложение.
+            </p>
+          )}
         </form>
       </dialog>
     </>

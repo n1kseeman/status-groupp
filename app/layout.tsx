@@ -14,11 +14,23 @@ const description =
 
 export const metadata: Metadata = {
   metadataBase,
+  applicationName: "Status Groupp",
   title: {
     default: "Status Groupp — азиатские пивные бренды оптом",
     template: "%s — Status Groupp",
   },
   description,
+  alternates: {
+    canonical: "./",
+  },
+  referrer: "strict-origin-when-cross-origin",
+  formatDetection: {
+    telephone: false,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
     icon: `${publicBasePath}/favicon.png`,
     shortcut: `${publicBasePath}/favicon.png`,
@@ -30,7 +42,7 @@ export const metadata: Metadata = {
     description,
     images: [
       {
-        url: "og.png",
+        url: "og.jpg",
         width: 1200,
         height: 630,
         alt: "Status Groupp — азиатские пивные бренды",
@@ -41,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Status Groupp — истории Азии, которые хочется попробовать",
     description,
-    images: ["og.png"],
+    images: ["og.jpg"],
   },
 };
 
@@ -72,13 +84,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
+      <head>
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'"
+        />
+      </head>
       <body
         style={
           {
-            "--hero-collage": `url("${publicBasePath}/assets/hero-collage.png")`,
+            "--hero-collage": `url("${publicBasePath}/assets/hero-collage.webp")`,
           } as CSSProperties
         }
       >
+        <a className="skip-link" href="#main-content">
+          К основному содержанию
+        </a>
         <header className="site-header">
           <Wordmark />
           <nav className="desktop-nav" aria-label="Основная навигация">
@@ -107,7 +128,9 @@ export default function RootLayout({
             </nav>
           </details>
         </header>
-        {children}
+        <div id="main-content" tabIndex={-1}>
+          {children}
+        </div>
         <footer className="site-footer" id="about">
           <div className="footer-top">
             <Wordmark />

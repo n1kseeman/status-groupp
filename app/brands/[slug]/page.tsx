@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { brands, products } from "../../data";
 
@@ -15,9 +16,26 @@ export async function generateMetadata({
   const { slug } = await params;
   const brand = brands.find((item) => item.slug === slug);
   if (!brand) return {};
+  const title = `${brand.name} оптом`;
+  const description = `${brand.short} Ассортимент ${brand.name} от Status Groupp.`;
+  const image = new URL(brand.image, "https://n1kseeman.github.io").toString();
+
   return {
-    title: `${brand.name} оптом`,
-    description: `${brand.short} Ассортимент ${brand.name} от Status Groupp.`,
+    title,
+    description,
+    openGraph: {
+      type: "website",
+      locale: "ru_RU",
+      title,
+      description,
+      images: [{ url: image, alt: `Ассортимент ${brand.name}` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
   };
 }
 
@@ -54,7 +72,14 @@ export default async function BrandPage({
           </button>
         </div>
         <div className="brand-hero-media">
-          <img src={brand.image} alt={`Ассортимент ${brand.name}`} />
+          <Image
+            src={brand.image}
+            alt={`Ассортимент ${brand.name}`}
+            width={920}
+            height={1227}
+            sizes="(max-width: 820px) 86vw, 50vw"
+            preload
+          />
           <span>{brand.country}</span>
         </div>
       </section>
@@ -85,7 +110,13 @@ export default async function BrandPage({
         <div className="brand-product-grid">
           {brandProducts.map((product) => (
             <article className="brand-product-card" key={product.id}>
-              <img src={product.image} alt={product.name} />
+              <Image
+                src={product.image}
+                alt={product.name}
+                width={800}
+                height={1000}
+                sizes="(max-width: 820px) calc(100vw - 82px), (max-width: 1100px) 44vw, 28vw"
+              />
               <p>{product.type}</p>
               <h3>{product.name}</h3>
               <div>

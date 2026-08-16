@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { assetPath, brands } from "./data";
 
 export default function Home() {
@@ -36,7 +37,14 @@ export default function Home() {
 
         <aside className="hero-product">
           <div className="hero-product-arch">
-            <img src={assetPath("/products/tsingtao-hero.webp")} alt="Пиво Tsingtao" />
+            <Image
+              src={assetPath("/products/tsingtao-hero.webp")}
+              alt="Пиво Tsingtao"
+              width={421}
+              height={800}
+              sizes="(max-width: 820px) 255px, 265px"
+              preload
+            />
           </div>
           <p>Бренд коллекции</p>
           <strong>Tsingtao / Китай</strong>
@@ -87,7 +95,13 @@ export default function Home() {
               <span>0{index + 1}</span>
               <span>{brand.country}</span>
             </div>
-            <img src={brand.image} alt={`Ассортимент ${brand.name}`} />
+            <Image
+              src={brand.image}
+              alt={`Ассортимент ${brand.name}`}
+              width={920}
+              height={1227}
+              sizes="(max-width: 820px) calc(100vw - 32px), 50vw"
+            />
             <div className="brand-card-copy">
               <p>{brand.type}</p>
               <h3>{brand.name}</h3>
@@ -156,18 +170,24 @@ export default function Home() {
         </div>
         <div className="featured-card featured-card-main">
           <span className="product-tag">Китай · 4,7%</span>
-          <img
+          <Image
             src={assetPath("/products/tsingtao-premium.webp")}
             alt="Tsingtao Premium Lager"
+            width={410}
+            height={445}
+            sizes="(max-width: 820px) calc(100vw - 72px), 38vw"
           />
           <h3>Tsingtao Premium Lager</h3>
           <p>Лёгкий, освежающий лагер для самых разных гастрономических сочетаний.</p>
         </div>
         <div className="featured-stack">
           <div className="featured-mini">
-            <img
+            <Image
               src={assetPath("/products/singha-033.webp")}
               alt="Singha Premium Lager"
+              width={500}
+              height={500}
+              sizes="(max-width: 460px) calc(100vw - 72px), 22vw"
             />
             <div>
               <span className="product-tag">Таиланд · 5%</span>
@@ -176,7 +196,13 @@ export default function Home() {
             </div>
           </div>
           <div className="featured-mini">
-            <img src={assetPath("/products/harbin-033.webp")} alt="Harbin Premium" />
+            <Image
+              src={assetPath("/products/harbin-033.webp")}
+              alt="Harbin Premium"
+              width={360}
+              height={540}
+              sizes="(max-width: 460px) calc(100vw - 72px), 22vw"
+            />
             <div>
               <span className="product-tag">Китай · 5%</span>
               <h3>Harbin Premium</h3>

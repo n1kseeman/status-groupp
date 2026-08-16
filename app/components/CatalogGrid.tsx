@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import type { Product } from "../data";
 
 const filters = [
@@ -36,7 +37,13 @@ export function CatalogGrid({ products }: { products: Product[] }) {
           <article className="product-card" key={product.id}>
             <div className="product-card-media">
               <span>{product.country}</span>
-              <img src={product.image} alt={product.name} />
+              <Image
+                src={product.image}
+                alt={product.name}
+                width={800}
+                height={1000}
+                sizes="(max-width: 820px) calc(100vw - 84px), (max-width: 1100px) 44vw, 28vw"
+              />
             </div>
             <div className="product-card-info">
               <p>{product.type}</p>
@@ -61,4 +68,3 @@ export function CatalogGrid({ products }: { products: Product[] }) {
     </>
   );
 }
-

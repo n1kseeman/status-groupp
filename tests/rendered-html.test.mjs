@@ -26,6 +26,8 @@ test("server-renders the Status Groupp home page", async () => {
   const response = await render("/");
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
+  assert.equal(response.headers.get("x-content-type-options"), "nosniff");
+  assert.equal(response.headers.get("x-frame-options"), "DENY");
 
   const html = await response.text();
   assert.match(html, /Status Groupp/);
@@ -35,7 +37,7 @@ test("server-renders the Status Groupp home page", async () => {
 });
 
 test("server-renders the catalog", async () => {
-  const response = await render("/catalog/");
+  const response = await render("/catalog");
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /Каталог вкусов/);
@@ -43,7 +45,7 @@ test("server-renders the catalog", async () => {
 });
 
 test("server-renders a brand page", async () => {
-  const response = await render("/brands/tsingtao/");
+  const response = await render("/brands/tsingtao");
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /История бренда/);
