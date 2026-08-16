@@ -1,7 +1,6 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MotionEffects } from "./components/MotionEffects";
 import { assetPath, brands, products } from "./data";
 import styles from "./home.module.css";
 
@@ -20,7 +19,6 @@ const revealDelay = (index: number) =>
 export default function Home() {
   return (
     <main className={styles.page}>
-      <MotionEffects />
       <div className={styles.scrollProgress} aria-hidden="true"><span /></div>
 
       <section className={styles.hero}>

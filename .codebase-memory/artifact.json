@@ -1,11 +1,11 @@
 {
     "schema_version": 2,
-    "commit": "2e9ea66f5b3643d0e672f1083f5bf0229004884c",
-    "indexed_at": "2026-08-16T16:44:42Z",
+    "commit": "f784cf3d3b871106d6b797026149396d6bbd8f46",
+    "indexed_at": "2026-08-16T18:37:55Z",
     "project": "status-groupp",
-    "nodes": 186,
-    "edges": 212,
+    "nodes": 189,
+    "edges": 216,
     "original_size": 2031616,
-    "compressed_size": 177333,
+    "compressed_size": 183122,
     "compression_level": 3
 }
