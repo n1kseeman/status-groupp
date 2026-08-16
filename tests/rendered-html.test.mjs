@@ -32,6 +32,8 @@ test("server-renders the Status Groupp home page", async () => {
   const html = await response.text();
   assert.match(html, /Status Groupp/);
   assert.match(html, /Истории Азии/);
+  assert.match(html, /Собраны в одной коллекции/);
+  assert.match(html, /От места происхождения/);
   assert.match(html, /Получить прайс/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|Building your site/i);
 });
