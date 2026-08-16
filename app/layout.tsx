@@ -61,7 +61,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#f7efdc",
+  themeColor: "#183729",
 };
 
 function Wordmark() {
