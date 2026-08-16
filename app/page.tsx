@@ -1,235 +1,209 @@
-import Link from "next/link";
+import type { CSSProperties } from "react";
 import Image from "next/image";
-import { assetPath, brands } from "./data";
+import Link from "next/link";
+import { MotionEffects } from "./components/MotionEffects";
+import { assetPath, brands, products } from "./data";
+import styles from "./home.module.css";
+
+const featuredProductIds = new Set([
+  "tsingtao-premium-033",
+  "tsingtao-ipa",
+  "harbin-033",
+  "singha-033",
+]);
+
+const featuredProducts = products.filter((product) => featuredProductIds.has(product.id));
+
+const revealDelay = (index: number) =>
+  ({ "--reveal-delay": `${index * 90}ms` }) as CSSProperties;
 
 export default function Home() {
   return (
-    <main>
-      <section className="hero hero-home">
-        <div className="hero-text container">
-          <p className="eyebrow">Пиво с характером места</p>
+    <main className={styles.page}>
+      <MotionEffects />
+      <div className={styles.scrollProgress} aria-hidden="true"><span /></div>
+
+      <section className={styles.hero}>
+        <div className={styles.heroGrid} aria-hidden="true" />
+        <div className={styles.heroCopy}>
+          <p className={styles.kicker}>Импортная коллекция · Азия → Россия</p>
           <h1>
-            Истории Азии,
-            <br />
-            которые хочется <em>попробовать.</em>
+            Истории Азии.
+            <span>Собраны в одной коллекции.</span>
           </h1>
-          <p className="hero-lead">
-            Tsingtao, Harbin, Singha и Saigon — оригинальные бренды с локальной
-            историей и собственным вкусом. Поставляем оптом по России.
+          <p className={styles.heroLead}>
+            Четыре бренда с собственным характером — от китайской классики до
+            ярких вкусов Таиланда и Вьетнама. Для ритейла, HoReCa и дистрибуции.
           </p>
-          <div className="hero-actions">
-            <Link className="button button-primary" href="/catalog">
-              Познакомиться с брендами
-              <span className="arrow-icon" aria-hidden="true" />
+          <div className={styles.heroActions}>
+            <Link className={styles.primaryAction} href="#brands">
+              Исследовать коллекцию <span aria-hidden="true">↘</span>
             </Link>
-            <button className="button button-ghost" data-price-request>
-              Получить прайс-лист
+            <button className={styles.secondaryAction} data-price-request>
+              Получить прайс
             </button>
-          </div>
-          <div className="country-list" aria-label="География брендов">
-            <span>Китай</span>
-            <i />
-            <span>Таиланд</span>
-            <i />
-            <span>Вьетнам</span>
           </div>
         </div>
 
-        <aside className="hero-product">
-          <div className="hero-product-arch">
+        <div className={styles.heroScene} aria-label="Главный бренд коллекции — Tsingtao">
+          <div className={styles.heroHalo} aria-hidden="true">
+            <span>1903</span><span>Qingdao</span><span>China</span>
+          </div>
+          <div className={styles.heroBottle}>
             <Image
               src={assetPath("/products/tsingtao-hero.webp")}
-              alt="Пиво Tsingtao"
+              alt="Бутылка и бокал Tsingtao"
               width={421}
               height={800}
-              sizes="(max-width: 820px) 255px, 265px"
+              sizes="(max-width: 600px) 78vw, (max-width: 1000px) 46vw, 34vw"
               preload
             />
           </div>
-          <p>Бренд коллекции</p>
-          <strong>Tsingtao / Китай</strong>
-        </aside>
-        <div className="hero-note">
-          Четыре бренда.
-          <br />
-          Три страны.
-          <br />
-          Одна сильная коллекция.
-        </div>
-      </section>
-
-      <section className="brand-ribbon" aria-label="Бренды Status Groupp">
-        <span className="brand-ribbon-intro">
-          Открывайте
-          <br />
-          новые вкусы <span className="arrow-icon arrow-icon-right" aria-hidden="true" />
-        </span>
-        {brands.map((brand) => (
-          <Link href={`/brands/${brand.slug}`} key={brand.slug}>
-            <strong>{brand.name}</strong>
-            <span>{brand.country}</span>
-          </Link>
-        ))}
-      </section>
-
-      <section className="section section-intro container" id="brands">
-        <div>
-          <p className="eyebrow">Коллекция Status Groupp</p>
-          <h2>
-            Четыре характера.
-            <br />
-            <em>Один сильный портфель.</em>
-          </h2>
-        </div>
-        <p className="section-copy">
-          От лёгких азиатских лагеров до пшеничного пива, стаута и
-          безалкогольных вариантов. Ассортимент собран так, чтобы закрыть разные
-          вкусовые сценарии и форматы продаж.
-        </p>
-      </section>
-
-      <section className="brand-grid container">
-        {brands.map((brand, index) => (
-          <article className={`brand-card brand-card-${brand.slug}`} key={brand.slug}>
-            <div className="brand-card-top">
-              <span>0{index + 1}</span>
-              <span>{brand.country}</span>
-            </div>
-            <Image
-              src={brand.image}
-              alt={`Ассортимент ${brand.name}`}
-              width={920}
-              height={1227}
-              sizes="(max-width: 820px) calc(100vw - 32px), 50vw"
-            />
-            <div className="brand-card-copy">
-              <p>{brand.type}</p>
-              <h3>{brand.name}</h3>
-              <p>{brand.short}</p>
-              <Link href={`/brands/${brand.slug}`}>
-                История и ассортимент
-                <span className="arrow-icon" aria-hidden="true" />
-              </Link>
-            </div>
-          </article>
-        ))}
-      </section>
-
-      <section className="story-section">
-        <div className="story-visual">
-          <div className="story-stamp">
-            <span>Asia</span>
-            <span className="arrow-icon arrow-icon-right" aria-hidden="true" />
-            <span>Russia</span>
+          <div className={styles.heroEdition}>
+            <span>01</span>
+            <p>Флагман коллекции</p>
+            <strong>Tsingtao Premium</strong>
           </div>
         </div>
-        <div className="story-copy">
-          <p className="eyebrow">Status Groupp</p>
-          <h2>
-            Азия ближе,
-            <br />
-            чем кажется.
-          </h2>
-          <p>
-            Мы знакомим российский рынок с узнаваемыми азиатскими пивными
-            брендами и помогаем бизнесу подобрать актуальный ассортимент.
-          </p>
-          <div className="story-points">
-            <div>
-              <strong>По всей России</strong>
-              <span>Обсуждаем географию и формат поставки под задачу партнёра.</span>
-            </div>
-            <div>
-              <strong>Прямой контакт</strong>
-              <span>Отдел продаж на связи по телефону, WhatsApp и email.</span>
-            </div>
-            <div>
-              <strong>Понятный выбор</strong>
-              <span>Бренды и позиции собраны в едином оптовом каталоге.</span>
-            </div>
-          </div>
-          <Link className="text-link" href="/partners">
-            Узнать о сотрудничестве
-            <span className="arrow-icon" aria-hidden="true" />
-          </Link>
+
+        <div className={styles.heroFacts}>
+          <div><strong>04</strong><span>бренда</span></div>
+          <div><strong>03</strong><span>страны</span></div>
+          <div><strong>15+</strong><span>позиций</span></div>
+          <p>Оптовые поставки по России</p>
         </div>
       </section>
 
-      <section className="section featured-products container">
-        <div className="featured-heading">
-          <p className="eyebrow">Выбор коллекции</p>
-          <h2>
-            От классики
-            <br />
-            <em>до новых вкусов.</em>
-          </h2>
-          <Link className="button button-outline" href="/catalog">
-            Весь каталог
-            <span className="arrow-icon" aria-hidden="true" />
-          </Link>
-        </div>
-        <div className="featured-card featured-card-main">
-          <span className="product-tag">Китай · 4,7%</span>
-          <Image
-            src={assetPath("/products/tsingtao-premium.webp")}
-            alt="Tsingtao Premium Lager"
-            width={410}
-            height={445}
-            sizes="(max-width: 820px) calc(100vw - 72px), 38vw"
-          />
-          <h3>Tsingtao Premium Lager</h3>
-          <p>Лёгкий, освежающий лагер для самых разных гастрономических сочетаний.</p>
-        </div>
-        <div className="featured-stack">
-          <div className="featured-mini">
-            <Image
-              src={assetPath("/products/singha-033.webp")}
-              alt="Singha Premium Lager"
-              width={500}
-              height={500}
-              sizes="(max-width: 460px) calc(100vw - 72px), 22vw"
-            />
-            <div>
-              <span className="product-tag">Таиланд · 5%</span>
-              <h3>Singha Premium</h3>
-              <p>Ярко-золотой лагер с лёгкой горчинкой.</p>
-            </div>
-          </div>
-          <div className="featured-mini">
-            <Image
-              src={assetPath("/products/harbin-033.webp")}
-              alt="Harbin Premium"
-              width={360}
-              height={540}
-              sizes="(max-width: 460px) calc(100vw - 72px), 22vw"
-            />
-            <div>
-              <span className="product-tag">Китай · 5%</span>
-              <h3>Harbin Premium</h3>
-              <p>Светлый лагер с особым сортом риса «жемчужина».</p>
-            </div>
-          </div>
+      <section className={styles.manifesto} aria-label="О коллекции">
+        <p data-reveal>Не просто импорт.</p>
+        <h2 data-reveal>
+          Мы собираем <em>культуру места</em> — в брендах, которые уже знают и
+          выбирают по всему миру.
+        </h2>
+        <div className={styles.manifestoMeta} data-reveal>
+          <span>Китай</span><i /><span>Таиланд</span><i /><span>Вьетнам</span>
         </div>
       </section>
 
-      <section className="partnership-cta">
-        <div>
-          <p className="eyebrow">Для магазинов, ресторанов и дистрибьюторов</p>
-          <h2>
-            Давайте соберём
-            <br />
-            <em>вашу азиатскую полку.</em>
-          </h2>
+      <section className={styles.collection} id="brands">
+        <header className={styles.sectionHeading} data-reveal>
+          <p>Коллекция / 01—04</p>
+          <h2>Четыре бренда.<br /><em>Четыре характера.</em></h2>
+          <span>Прокрутите, чтобы открыть историю каждого места.</span>
+        </header>
+
+        <div className={styles.brandChapters}>
+          {brands.map((brand, index) => (
+            <article
+              className={styles.brandChapter}
+              data-reveal
+              key={brand.slug}
+              style={{
+                "--brand-accent": brand.accent,
+                "--reveal-delay": `${index * 45}ms`,
+              } as CSSProperties}
+            >
+              <div className={styles.chapterIndex} aria-hidden="true">0{index + 1}</div>
+              <div className={styles.chapterCopy}>
+                <div className={styles.chapterMeta}>
+                  <span>{brand.country}</span><span>{brand.since}</span>
+                </div>
+                <p>{brand.type}</p>
+                <h3>{brand.name}</h3>
+                <p className={styles.chapterIntro}>{brand.intro}</p>
+                <p className={styles.chapterStory}>{brand.short}</p>
+                <Link href={`/brands/${brand.slug}`}>
+                  Открыть историю <span aria-hidden="true">↗</span>
+                </Link>
+              </div>
+              <div className={styles.chapterVisual}>
+                <div className={styles.chapterSun} aria-hidden="true" />
+                <Image
+                  src={brand.image}
+                  alt={`Линейка ${brand.name}`}
+                  width={920}
+                  height={1227}
+                  sizes="(max-width: 760px) 88vw, 48vw"
+                />
+                <span className={styles.chapterCountry}>{brand.country}</span>
+              </div>
+            </article>
+          ))}
         </div>
-        <div>
-          <p>
-            Запросите актуальный прайс-лист — отдел продаж свяжется с вами и
-            поможет подобрать позиции под формат бизнеса.
-          </p>
-          <button className="button button-light" data-price-request>
-            Получить прайс-лист
-            <span className="arrow-icon" aria-hidden="true" />
-          </button>
+      </section>
+
+      <section className={styles.routeSection}>
+        <div className={styles.routeIntro} data-reveal>
+          <p>Как работает Status Groupp</p>
+          <h2>От места происхождения — <em>до вашей полки.</em></h2>
+        </div>
+        <div className={styles.routeTrack}>
+          {[
+            ["01", "Находим", "Бренды с историей, узнаваемостью и понятным вкусом."],
+            ["02", "Собираем", "Портфель под разные форматы, аудитории и гастросценарии."],
+            ["03", "Доставляем", "Работаем с партнёрами и обсуждаем поставки по России."],
+          ].map(([number, title, copy], index) => (
+            <article data-reveal style={revealDelay(index)} key={number}>
+              <span>{number}</span><h3>{title}</h3><p>{copy}</p>
+            </article>
+          ))}
+        </div>
+        <div className={styles.routeLine} aria-hidden="true"><span /></div>
+      </section>
+
+      <section className={styles.productsSection} id="products">
+        <header className={styles.productsHeading} data-reveal>
+          <div>
+            <p>Выбор коллекции</p>
+            <h2>Попробуйте<br /><em>Азию по-разному.</em></h2>
+          </div>
+          <Link href="/catalog">Смотреть весь каталог <span aria-hidden="true">↗</span></Link>
+        </header>
+        <div className={styles.productRail}>
+          {featuredProducts.map((product, index) => (
+            <article data-reveal style={revealDelay(index)} key={product.id}>
+              <div className={styles.productImage}>
+                <span>0{index + 1}</span>
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  width={500}
+                  height={600}
+                  sizes="(max-width: 620px) 72vw, (max-width: 1000px) 38vw, 23vw"
+                />
+              </div>
+              <div className={styles.productMeta}>
+                <p>{product.country} · {product.type}</p>
+                <h3>{product.name}</h3>
+                <span>{product.volume}{product.abv ? ` · ${product.abv}` : ""}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.partnerCta}>
+        <div className={styles.ctaMarquee} aria-hidden="true">
+          <div>
+            <span>RETAIL</span><i /><span>HORECA</span><i /><span>DISTRIBUTION</span><i />
+            <span>RETAIL</span><i /><span>HORECA</span><i /><span>DISTRIBUTION</span><i />
+          </div>
+        </div>
+        <div className={styles.ctaContent}>
+          <div data-reveal>
+            <p>Сотрудничество</p>
+            <h2>Соберём азиатскую полку, которую <em>заметят.</em></h2>
+          </div>
+          <div className={styles.ctaAside} data-reveal>
+            <p>
+              Расскажите о формате бизнеса — предложим ассортимент и актуальные
+              оптовые условия.
+            </p>
+            <button data-price-request>
+              Получить прайс-лист <span aria-hidden="true">↗</span>
+            </button>
+            <Link href="/partners">Условия сотрудничества</Link>
+          </div>
         </div>
       </section>
     </main>
