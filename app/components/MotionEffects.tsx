@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export function MotionEffects() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const root = document.documentElement;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -50,7 +53,7 @@ export function MotionEffects() {
       root.style.removeProperty("--page-progress");
       root.style.removeProperty("--hero-shift");
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

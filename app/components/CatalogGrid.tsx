@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import type { Product } from "../data";
+import styles from "../inner-pages.module.css";
 
 const filters = [
   { value: "all", label: "Все бренды" },
@@ -21,45 +22,40 @@ export function CatalogGrid({ products }: { products: Product[] }) {
 
   return (
     <>
-      <div className="catalog-filters" role="group" aria-label="Фильтр по брендам">
+      <div className={styles.catalogFilters} role="group" aria-label="Фильтр по брендам">
         {filters.map((filter) => (
           <button
             key={filter.value}
-            className={active === filter.value ? "active" : ""}
+            className={active === filter.value ? styles.activeFilter : ""}
+            aria-pressed={active === filter.value}
             onClick={() => setActive(filter.value)}
           >
             {filter.label}
           </button>
         ))}
       </div>
-      <div className="catalog-grid">
-        {visible.map((product) => (
-          <article className="product-card" key={product.id}>
-            <div className="product-card-media">
-              <span>{product.country}</span>
+      <p className={styles.catalogResult} aria-live="polite">Показано позиций: {visible.length}</p>
+      <div className={styles.catalogGrid}>
+        {visible.map((product, index) => (
+          <article className={styles.productCard} key={product.id}>
+            <div className={styles.productMedia}>
+              <span>0{index + 1}</span>
+              <small>{product.country}</small>
               <Image
                 src={product.image}
                 alt={product.name}
                 width={800}
                 height={1000}
-                sizes="(max-width: 820px) calc(100vw - 84px), (max-width: 1100px) 44vw, 28vw"
+                sizes="(max-width: 620px) calc(100vw - 48px), (max-width: 1000px) 44vw, 28vw"
               />
             </div>
-            <div className="product-card-info">
+            <div className={styles.productInfo}>
               <p>{product.type}</p>
               <h2>{product.name}</h2>
               <p>{product.description}</p>
               <dl>
-                <div>
-                  <dt>Объём</dt>
-                  <dd>{product.volume}</dd>
-                </div>
-                {product.abv && (
-                  <div>
-                    <dt>Крепость</dt>
-                    <dd>{product.abv}</dd>
-                  </div>
-                )}
+                <div><dt>Объём</dt><dd>{product.volume}</dd></div>
+                {product.abv && <div><dt>Крепость</dt><dd>{product.abv}</dd></div>}
               </dl>
             </div>
           </article>

@@ -42,7 +42,8 @@ test("server-renders the catalog", async () => {
   const response = await render("/catalog");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /Каталог вкусов/);
+  assert.match(html, /Вкусы Азии/);
+  assert.match(html, /Выберите свой/);
   assert.match(html, /Tsingtao Premium Lager/);
 });
 
@@ -50,6 +51,18 @@ test("server-renders a brand page", async () => {
   const response = await render("/brands/tsingtao");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /История бренда/);
+  assert.match(html, /История, которую/);
   assert.match(html, /Позиции[\s\S]{0,30}Tsingtao/);
 });
+
+for (const [path, marker] of [
+  ["/partners", /Азия для/],
+  ["/contacts", /Давайте[\s\S]{0,30}поговорим/],
+  ["/privacy", /Обработка[\s\S]{0,40}персональных/],
+]) {
+  test(`server-renders ${path}`, async () => {
+    const response = await render(path);
+    assert.equal(response.status, 200);
+    assert.match(await response.text(), marker);
+  });
+}

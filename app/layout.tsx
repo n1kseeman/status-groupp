@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import "./globals.css";
 import { InteractiveShell } from "./components/InteractiveShell";
+import { MotionEffects } from "./components/MotionEffects";
 
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const metadataBase = new URL(
@@ -166,6 +167,7 @@ export default function RootLayout({
             <span>Информация для лиц старше 18 лет</span>
           </div>
         </footer>
+        <MotionEffects />
         <InteractiveShell />
       </body>
     </html>
