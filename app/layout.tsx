@@ -11,7 +11,7 @@ const metadataBase = new URL(
   "https://n1kseeman.github.io",
 );
 const description =
-  "Оптовые поставки Tsingtao, Harbin, Singha, Leo и Saigon по России. Каталог азиатского пива для магазинов, ресторанов и дистрибьюторов.";
+  "Оптовые поставки 11 азиатских брендов по России: Tsingtao, Harbin, Yanjing, Bia Hà Nội, Kaisar King, TOK RENE, Singha, Leo, Saigon и другие.";
 
 export const metadata: Metadata = {
   metadataBase,
@@ -104,7 +104,7 @@ export default function RootLayout({
         <header className="site-header">
           <Wordmark />
           <nav className="desktop-nav" aria-label="Основная навигация">
-            <Link href="/#brands">Бренды</Link>
+            <Link href="/brands">Бренды</Link>
             <Link href="/catalog">Каталог</Link>
             <Link href="/partners">Партнёрам</Link>
             <Link href="/#about">О нас</Link>
@@ -121,7 +121,7 @@ export default function RootLayout({
               <i />
             </summary>
             <nav>
-              <Link href="/#brands">Бренды</Link>
+              <Link href="/brands">Бренды</Link>
               <Link href="/catalog">Каталог</Link>
               <Link href="/partners">Партнёрам</Link>
               <Link href="/contacts">Контакты</Link>
@@ -141,6 +141,7 @@ export default function RootLayout({
               для российского рынка.
             </p>
             <div className="footer-links">
+              <Link href="/brands">Бренды</Link>
               <Link href="/catalog">Каталог</Link>
               <Link href="/partners">Партнёрам</Link>
               <Link href="/contacts">Контакты</Link>

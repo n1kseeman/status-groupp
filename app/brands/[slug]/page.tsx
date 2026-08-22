@@ -83,12 +83,12 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
           {brandProducts.map((product, index) => (
             <article data-reveal style={{ "--reveal-delay": `${index * 80}ms` } as CSSProperties} key={product.id}>
               <div className={styles.brandProductMedia}>
-                <span>0{index + 1}</span>
+                <span>{String(index + 1).padStart(2, "0")}</span>
                 <Image src={product.image} alt={product.name} width={800} height={1000} sizes="(max-width: 620px) calc(100vw - 48px), (max-width: 1000px) 44vw, 28vw" />
               </div>
               <p>{product.type}</p>
               <h3>{product.name}</h3>
-              <div><span>{product.volume}</span>{product.abv && <span>{product.abv}</span>}</div>
+              <div><span>{product.volume}</span>{product.abv && <span>{product.abv}</span>}{product.pack && <span>{product.pack}</span>}</div>
             </article>
           ))}
         </div>

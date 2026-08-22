@@ -12,6 +12,8 @@ const featuredProductIds = new Set([
 ]);
 
 const featuredProducts = products.filter((product) => featuredProductIds.has(product.id));
+const featuredBrandSlugs = new Set(["tsingtao", "yanjing", "kaisar-king", "ha-noi"]);
+const featuredBrands = brands.filter((brand) => featuredBrandSlugs.has(brand.slug));
 
 const revealDelay = (index: number) =>
   ({ "--reveal-delay": `${index * 90}ms` }) as CSSProperties;
@@ -30,11 +32,11 @@ export default function Home() {
             <span>Собраны в одной коллекции.</span>
           </h1>
           <p className={styles.heroLead}>
-            Четыре бренда с собственным характером — от китайской классики до
+            Одиннадцать брендов с собственным характером — от китайской классики до
             ярких вкусов Таиланда и Вьетнама. Для ритейла, HoReCa и дистрибуции.
           </p>
           <div className={styles.heroActions}>
-            <Link className={styles.primaryAction} href="#brands">
+            <Link className={styles.primaryAction} href="/brands">
               Исследовать коллекцию <span aria-hidden="true">↘</span>
             </Link>
             <button className={styles.secondaryAction} data-price-request>
@@ -65,9 +67,9 @@ export default function Home() {
         </div>
 
         <div className={styles.heroFacts}>
-          <div><strong>04</strong><span>бренда</span></div>
+          <div><strong>{String(brands.length).padStart(2, "0")}</strong><span>брендов</span></div>
           <div><strong>03</strong><span>страны</span></div>
-          <div><strong>15+</strong><span>позиций</span></div>
+          <div><strong>{products.length}</strong><span>позиции</span></div>
           <p>Оптовые поставки по России</p>
         </div>
       </section>
@@ -85,13 +87,13 @@ export default function Home() {
 
       <section className={styles.collection} id="brands">
         <header className={styles.sectionHeading} data-reveal>
-          <p>Коллекция / 01—04</p>
-          <h2>Четыре бренда.<br /><em>Четыре характера.</em></h2>
-          <span>Прокрутите, чтобы открыть историю каждого места.</span>
+          <p>Избранное / 04 из {brands.length}</p>
+          <h2>Четыре истории.<br /><em>Один большой портфель.</em></h2>
+          <span>Откройте ключевые истории или перейдите к логотипам всех брендов.</span>
         </header>
 
         <div className={styles.brandChapters}>
-          {brands.map((brand, index) => (
+          {featuredBrands.map((brand, index) => (
             <article
               className={styles.brandChapter}
               data-reveal
@@ -127,6 +129,10 @@ export default function Home() {
               </div>
             </article>
           ))}
+        </div>
+        <div className={styles.allBrandsCta} data-reveal>
+          <div><span>Полный портфель</span><p>{brands.length} логотипов · {products.length} товарные позиции</p></div>
+          <Link href="/brands">Смотреть все бренды <span aria-hidden="true">↗</span></Link>
         </div>
       </section>
 

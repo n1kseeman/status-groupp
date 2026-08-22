@@ -7,7 +7,7 @@ import styles from "../inner-pages.module.css";
 export const metadata: Metadata = {
   title: "Каталог азиатского пива",
   description:
-    "Оптовый каталог Tsingtao, Harbin, Singha, Leo и Saigon от Status Groupp.",
+    "Оптовый каталог азиатского пива Status Groupp: 11 брендов и более 30 товарных позиций.",
 };
 
 export default function CatalogPage() {
@@ -16,11 +16,11 @@ export default function CatalogPage() {
       <section className={styles.innerHero}>
         <div className={styles.heroGrid} aria-hidden="true" />
         <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>Каталог / 15+ позиций</p>
+          <p className={styles.eyebrow}>Каталог / {products.length} позиции</p>
           <h1>Вкусы Азии.<br /><em>На одной полке.</em></h1>
           <p className={styles.heroLead}>
-            От лёгких лагеров до IPA, стаута, пшеничного и безалкогольного пива.
-            Фильтруйте коллекцию по бренду и запрашивайте актуальное наличие.
+            От лёгких лагеров до IPA, стаута, фруктового пшеничного и безалкогольного пива.
+            Фильтруйте коллекцию по 11 брендам и запрашивайте актуальное наличие.
           </p>
           <button className={styles.primaryButton} data-price-request>
             Получить оптовый прайс <span aria-hidden="true">↗</span>

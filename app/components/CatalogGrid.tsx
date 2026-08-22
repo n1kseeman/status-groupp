@@ -2,16 +2,13 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
-import type { Product } from "../data";
+import { brands, type Product } from "../data";
 import styles from "../inner-pages.module.css";
 
-const filters = [
-  { value: "all", label: "Все бренды" },
-  { value: "tsingtao", label: "Tsingtao" },
-  { value: "harbin", label: "Harbin" },
-  { value: "singha", label: "Singha / Leo" },
-  { value: "saigon", label: "Saigon" },
-];
+const filters = [{ value: "all", label: "Все бренды" }, ...brands.map((brand) => ({
+  value: brand.slug,
+  label: brand.name,
+}))];
 
 export function CatalogGrid({ products }: { products: Product[] }) {
   const [active, setActive] = useState("all");
@@ -39,7 +36,7 @@ export function CatalogGrid({ products }: { products: Product[] }) {
         {visible.map((product, index) => (
           <article className={styles.productCard} key={product.id}>
             <div className={styles.productMedia}>
-              <span>0{index + 1}</span>
+              <span>{String(index + 1).padStart(2, "0")}</span>
               <small>{product.country}</small>
               <Image
                 src={product.image}
@@ -56,7 +53,15 @@ export function CatalogGrid({ products }: { products: Product[] }) {
               <dl>
                 <div><dt>Объём</dt><dd>{product.volume}</dd></div>
                 {product.abv && <div><dt>Крепость</dt><dd>{product.abv}</dd></div>}
+                {product.pack && <div><dt>В упаковке</dt><dd>{product.pack}</dd></div>}
               </dl>
+              {(product.composition || product.shelfLife) && (
+                <details className={styles.productDetails}>
+                  <summary>Подробнее о позиции <span aria-hidden="true">+</span></summary>
+                  {product.composition && <p><strong>Состав:</strong> {product.composition}</p>}
+                  {product.shelfLife && <p><strong>Срок годности:</strong> {product.shelfLife}</p>}
+                </details>
+              )}
             </div>
           </article>
         ))}

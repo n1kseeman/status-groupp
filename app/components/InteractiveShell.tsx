@@ -46,7 +46,9 @@ export function InteractiveShell() {
       const button = target.closest("[data-price-request]");
       if (!button) return;
       event.preventDefault();
-      priceDialog.current?.showModal();
+      if (priceDialog.current && !priceDialog.current.open) {
+        priceDialog.current.showModal();
+      }
     };
 
     document.addEventListener("click", openPrice);

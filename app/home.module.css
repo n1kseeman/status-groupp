@@ -382,6 +382,24 @@
   gap: 2px;
 }
 
+.allBrandsCta {
+  width: min(1240px,calc(100% - 80px));
+  margin: 72px auto 0;
+  padding: 28px 30px;
+  border: 1px solid rgba(251,245,232,.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  color: var(--sand-light);
+  background: rgba(251,245,232,.06);
+  backdrop-filter: blur(14px);
+}
+
+.allBrandsCta span { color: var(--gold); font-size: 9px; font-weight: 850; letter-spacing: .17em; text-transform: uppercase; }
+.allBrandsCta p { margin-top: 7px; color: rgba(251,245,232,.6); font-size: 13px; }
+.allBrandsCta > a { min-height: 50px; padding: 0 18px; border: 1px solid rgba(251,245,232,.28); border-radius: 999px; display: inline-flex; align-items: center; gap: 34px; font-size: 11px; font-weight: 850; transition: color 200ms ease,background 200ms ease,transform 200ms ease; }
+
 .brandChapter {
   position: relative;
   min-height: min(870px, 91svh);
@@ -859,6 +877,7 @@
   .productsHeading > a:hover { color: var(--night); background: var(--sand-light); }
   .brandChapter:hover .chapterVisual img { transform: scale(1.045) translateY(-10px); }
   .productRail article:hover .productImage img { transform: translateY(-12px) scale(1.045); }
+  .allBrandsCta > a:hover { color: var(--night); background: var(--sand-light); transform: translateY(-2px); }
 }
 
 @media (max-width: 1180px) {
@@ -1098,6 +1117,8 @@
   }
 
   .ctaAside > p { font-size: 15px; }
+  .allBrandsCta { width: calc(100% - 32px); margin-top: 48px; padding: 24px 20px; align-items: flex-start; flex-direction: column; }
+  .allBrandsCta > a { width: 100%; justify-content: space-between; }
 }
 
 @media (max-width: 380px) {
@@ -1119,7 +1140,8 @@
 
   .heroBottle,
   .chapterVisual img,
-  .productImage img { transform: none; transition: none; }
+  .productImage img,
+  .allBrandsCta > a { transform: none; transition: none; }
 
   :global(.has-motion) .page [data-reveal] {
     opacity: 1;

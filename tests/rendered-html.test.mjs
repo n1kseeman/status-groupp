@@ -45,6 +45,18 @@ test("server-renders the catalog", async () => {
   assert.match(html, /Вкусы Азии/);
   assert.match(html, /Выберите свой/);
   assert.match(html, /Tsingtao Premium Lager/);
+  assert.match(html, /Kaisar King Passion Fruit/);
+  assert.match(html, /Berlin Priest Stout/);
+});
+
+test("server-renders the interactive brands index", async () => {
+  const response = await render("/brands");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Имена Азии/);
+  assert.match(html, /YANJING BEER/);
+  assert.match(html, /KAISAR KING/);
+  assert.match(html, /Открыть информацию о бренде/);
 });
 
 test("server-renders a brand page", async () => {

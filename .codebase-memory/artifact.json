@@ -1,11 +1,11 @@
 {
     "schema_version": 2,
-    "commit": "f784cf3d3b871106d6b797026149396d6bbd8f46",
-    "indexed_at": "2026-08-16T18:37:55Z",
-    "project": "status-groupp",
-    "nodes": 189,
-    "edges": 216,
+    "commit": "94595b12ab1d29235e7e38ff6ab762f30f015055",
+    "indexed_at": "2026-08-22T19:36:37Z",
+    "project": "Users-n1kseeman-Documents-Codex-2026-08-22-e-y-work-status-groupp-src",
+    "nodes": 211,
+    "edges": 325,
     "original_size": 2031616,
-    "compressed_size": 183122,
-    "compression_level": 3
+    "compressed_size": 204224,
+    "compression_level": 9
 }
