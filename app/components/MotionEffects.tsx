@@ -9,10 +9,11 @@ export function MotionEffects() {
   useEffect(() => {
     const root = document.documentElement;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const compactViewport = window.matchMedia("(max-width: 760px)").matches;
     const revealItems = document.querySelectorAll<HTMLElement>("[data-reveal]");
     root.classList.add("has-motion");
 
-    if (reducedMotion || !("IntersectionObserver" in window)) {
+    if (reducedMotion || compactViewport || !("IntersectionObserver" in window)) {
       revealItems.forEach((item) => item.classList.add("is-visible"));
       return () => root.classList.remove("has-motion");
     }

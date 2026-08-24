@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import "./globals.css";
 import { InteractiveShell } from "./components/InteractiveShell";
+import { MobileMenu } from "./components/MobileMenu";
 import { MotionEffects } from "./components/MotionEffects";
 
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -115,19 +116,7 @@ export default function RootLayout({
             Получить прайс
             <span className="arrow-icon" aria-hidden="true" />
           </button>
-          <details className="mobile-menu">
-            <summary aria-label="Открыть меню">
-              <i />
-              <i />
-            </summary>
-            <nav>
-              <Link href="/brands">Бренды</Link>
-              <Link href="/catalog">Каталог</Link>
-              <Link href="/partners">Партнёрам</Link>
-              <Link href="/contacts">Контакты</Link>
-              <button data-price-request>Получить прайс</button>
-            </nav>
-          </details>
+          <MobileMenu />
         </header>
         <div id="main-content" tabIndex={-1}>
           {children}

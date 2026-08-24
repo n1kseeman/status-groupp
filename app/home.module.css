@@ -1149,3 +1149,389 @@
     transition: none;
   }
 }
+
+/* Compact phone layout: preserve the story, remove desktop-scale pacing. */
+@media (max-width: 760px), (orientation: landscape) and (max-height: 520px) and (max-width: 950px) {
+  .scrollProgress {
+    display: none;
+  }
+
+  :global(.has-motion) .page [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    background:
+      linear-gradient(180deg, rgba(7, 28, 21, 0.98) 0 54%, rgba(7, 28, 21, 0.76) 76%, rgba(7, 28, 21, 0.35) 100%),
+      var(--hero-collage) 61% center / cover no-repeat,
+      var(--night-deep);
+  }
+
+  .heroCopy {
+    padding: 48px 18px 28px;
+  }
+
+  .heroCopy > * {
+    animation: none;
+  }
+
+  .heroCopy h1 {
+    margin-top: 18px;
+    font-size: clamp(42px, 12.5vw, 56px);
+    line-height: 0.94;
+    letter-spacing: -0.055em;
+  }
+
+  .heroCopy h1 span {
+    margin-top: 5px;
+  }
+
+  .heroLead {
+    max-width: 520px;
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .heroActions {
+    margin-top: 22px;
+    gap: 9px;
+  }
+
+  .primaryAction,
+  .secondaryAction {
+    min-height: 52px;
+  }
+
+  .heroScene {
+    min-height: 318px;
+  }
+
+  .heroBottle {
+    right: 50%;
+    bottom: -8px;
+    width: min(67vw, 270px);
+    transform: translateX(50%);
+    animation: none;
+  }
+
+  .heroBottle img {
+    max-height: 320px;
+  }
+
+  .heroHalo {
+    top: 47%;
+    width: min(74vw, 300px);
+    animation: none;
+  }
+
+  .heroHalo span,
+  .heroEdition {
+    display: none;
+  }
+
+  .heroFacts {
+    min-height: 68px;
+  }
+
+  .heroFacts div {
+    min-height: 68px;
+    padding: 0 5px;
+  }
+
+  .heroFacts strong {
+    font-size: 24px;
+  }
+
+  .heroFacts span {
+    font-size: 7px;
+  }
+
+  .manifesto {
+    min-height: auto;
+    padding: 64px 18px;
+    gap: 22px;
+  }
+
+  .manifesto > p {
+    font-size: 10px;
+  }
+
+  .manifesto h2 {
+    font-size: clamp(36px, 10.5vw, 46px);
+    line-height: 1;
+  }
+
+  .manifestoMeta {
+    gap: 8px;
+    font-size: 9px;
+  }
+
+  .collection {
+    padding-top: 64px;
+  }
+
+  .sectionHeading,
+  .productsHeading,
+  .routeSection,
+  .ctaContent {
+    width: calc(100% - 36px);
+  }
+
+  .sectionHeading {
+    gap: 18px;
+    padding-bottom: 36px;
+  }
+
+  .sectionHeading h2,
+  .productsHeading h2,
+  .routeIntro h2,
+  .ctaContent h2 {
+    font-size: clamp(36px, 10.5vw, 47px);
+    line-height: 0.98;
+  }
+
+  .sectionHeading > span {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .brandChapters {
+    width: calc(100% - 24px);
+    margin-inline: auto;
+    gap: 12px;
+    background: transparent;
+  }
+
+  .brandChapter,
+  .brandChapter:nth-child(even) {
+    min-height: 0;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .chapterVisual,
+  .brandChapter:nth-child(even) .chapterVisual {
+    order: 1;
+    height: 220px;
+    min-height: 220px;
+    flex: 0 0 220px;
+  }
+
+  .chapterCopy,
+  .brandChapter:nth-child(even) .chapterCopy {
+    order: 2;
+    min-height: 0;
+    padding: 28px 18px 22px;
+  }
+
+  .chapterIndex {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--night-deep);
+    background: var(--gold);
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 900;
+    line-height: 1;
+    transform: none;
+  }
+
+  .chapterVisual img {
+    width: 76%;
+    height: 96%;
+    transform: none;
+  }
+
+  .chapterSun {
+    width: 60%;
+  }
+
+  .chapterCountry {
+    display: none;
+  }
+
+  .chapterMeta {
+    margin-bottom: 16px;
+  }
+
+  .chapterCopy h3 {
+    margin-top: 7px;
+    font-size: clamp(42px, 12vw, 54px);
+    line-height: 0.92;
+  }
+
+  .chapterIntro {
+    margin-top: 16px;
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  .chapterStory {
+    display: none;
+  }
+
+  .chapterCopy > a {
+    min-height: 48px;
+    margin-top: 20px;
+  }
+
+  .allBrandsCta {
+    width: calc(100% - 24px);
+    margin-top: 12px;
+    padding: 20px 18px;
+    gap: 18px;
+  }
+
+  .routeSection {
+    padding-block: 70px 84px;
+  }
+
+  .routeTrack {
+    margin-top: 44px;
+    gap: 28px;
+  }
+
+  .routeTrack article {
+    min-height: 0;
+    padding-left: 58px;
+  }
+
+  .routeTrack h3 {
+    font-size: 28px;
+  }
+
+  .routeTrack p {
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .routeLine {
+    display: none;
+  }
+
+  .productsSection {
+    padding: 64px 0 76px;
+  }
+
+  .productsHeading {
+    gap: 24px;
+  }
+
+  .productsHeading > a {
+    min-height: 48px;
+  }
+
+  .productRail {
+    margin-top: 38px;
+    padding-inline: 18px;
+    grid-template-columns: repeat(4, minmax(245px, 78vw));
+    gap: 10px;
+    scroll-padding-inline: 18px;
+  }
+
+  .productImage {
+    height: 310px;
+  }
+
+  .productMeta h3 {
+    font-size: 22px;
+  }
+
+  .ctaMarquee {
+    padding: 14px 0;
+  }
+
+  .ctaMarquee div {
+    gap: 18px;
+    animation: none;
+    transform: translateX(-4%);
+  }
+
+  .ctaMarquee span {
+    font-size: 30px;
+  }
+
+  .ctaContent {
+    min-height: 0;
+    padding-block: 64px 72px;
+    gap: 32px;
+  }
+
+  .ctaAside > p {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .ctaAside button {
+    min-height: 54px;
+    margin-top: 22px;
+  }
+}
+
+@media (max-width: 360px) {
+  .heroCopy {
+    padding-inline: 14px;
+  }
+
+  .heroCopy h1 {
+    font-size: 40px;
+  }
+
+  .heroScene {
+    min-height: 290px;
+  }
+
+  .chapterCopy h3 {
+    font-size: 40px;
+  }
+
+  .productRail {
+    grid-template-columns: repeat(4, minmax(230px, 82vw));
+    padding-inline: 14px;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 520px) and (max-width: 950px) {
+  .hero {
+    min-height: 520px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+
+  .heroCopy {
+    padding: 42px 24px;
+  }
+
+  .heroCopy h1 {
+    font-size: clamp(42px, 6.5vw, 58px);
+  }
+
+  .heroLead {
+    max-width: 520px;
+  }
+
+  .heroScene {
+    min-height: 430px;
+  }
+
+  .heroBottle {
+    width: min(34vw, 260px);
+  }
+
+  .heroFacts {
+    grid-column: 1 / -1;
+  }
+}

@@ -1068,3 +1068,784 @@
   :global(.has-motion) .page [data-reveal]{opacity:1;transform:none;transition:none}
   .logoTile,.logoTile::before,.brandDialogClose,.brandDialogActions a,.brandDialogActions button{transition:none}
 }
+
+.catalogMobileFilter,
+.catalogMore { display:none; }
+
+/* Phone layout: compact, scannable and touch-first. */
+@media (max-width:760px), (orientation:landscape) and (max-height:520px) and (max-width:950px) {
+  :global(.has-motion) .page [data-reveal] {
+    opacity:1;
+    transform:none;
+    transition:none;
+  }
+
+  .heroCopy > *,
+  .catalogVisual img,
+  .brandHeroVisual img,
+  .productCard {
+    animation:none;
+  }
+
+  .innerHero {
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .heroCopy {
+    width:auto;
+    padding:48px 18px 34px;
+  }
+
+  .eyebrow {
+    font-size:8px;
+  }
+
+  .eyebrow::before {
+    width:24px;
+  }
+
+  .heroCopy h1 {
+    margin-top:18px;
+    font-size:clamp(40px,11.8vw,52px);
+    line-height:.94;
+    letter-spacing:-.052em;
+  }
+
+  .heroLead {
+    max-width:540px;
+    margin-top:18px;
+    font-size:15px;
+    line-height:1.5;
+  }
+
+  .primaryButton {
+    min-height:52px;
+    margin-top:22px;
+  }
+
+  .heroVisual {
+    min-height:280px;
+    order:2;
+  }
+
+  .heroStrip {
+    min-height:64px;
+    padding:13px 18px;
+    gap:8px;
+    order:3;
+  }
+
+  .heroStrip span,
+  .heroStrip p {
+    font-size:7px;
+  }
+
+  .heroStrip p {
+    width:100%;
+  }
+
+  .catalogVisual {
+    min-height:300px;
+  }
+
+  .catalogVisual img {
+    bottom:-7%;
+    width:39%;
+    height:100%;
+  }
+
+  .catalogBottleA { left:5%; }
+  .catalogBottleB { left:31%; }
+  .catalogBottleC { right:1%; }
+  .catalogOrbit { width:min(72vw,300px); }
+  .heroBadge { right:12px; bottom:14px; max-width:180px; padding:10px 13px; }
+
+  .logoHeroMark {
+    min-height:230px;
+  }
+
+  .logoHeroMark::before { inset:8%; }
+  .logoHeroMark::after { inset:23%; }
+  .logoHeroMark span { font-size:112px; }
+  .logoHeroMark p { margin-top:16px; }
+
+  .brandHeroVisual {
+    min-height:320px;
+  }
+
+  .brandHeroVisual img {
+    width:86%;
+    height:96%;
+  }
+
+  .brandRings { width:64%; }
+  .brandCountry { display:none; }
+
+  .brandFacts {
+    margin-top:22px;
+  }
+
+  .brandFacts strong {
+    font-size:17px;
+  }
+
+  .partnersVisual {
+    min-height:250px;
+    padding:32px 16px 20px;
+  }
+
+  .partnerMap {
+    inset:5% 7% 39%;
+    font-size:28px;
+  }
+
+  .partnerMetric {
+    min-height:78px;
+  }
+
+  .partnerMetric strong {
+    font-size:25px;
+  }
+
+  .contactHeroCard {
+    min-height:0;
+    margin:14px 14px 38px;
+    padding:24px 20px;
+    box-shadow:8px 10px 0 rgba(188,88,56,.85);
+  }
+
+  .contactHeroCard > a:first-of-type {
+    margin-top:28px;
+    font-size:clamp(38px,12vw,48px);
+  }
+
+  .contactHeroCard > a:nth-of-type(2) {
+    margin-top:18px;
+    min-height:44px;
+    display:flex;
+    align-items:center;
+    font-size:14px;
+  }
+
+  .contactHeroCard > div {
+    margin-top:26px;
+    gap:8px;
+  }
+
+  .contactHeroCard > div a,
+  .contactHeroCard > div button {
+    min-height:46px;
+  }
+
+  .legalHero .heroVisual {
+    min-height:230px;
+  }
+
+  .legalMark {
+    width:min(65%,240px);
+  }
+
+  .sectionHeader {
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+
+  .sectionHeader h2,
+  .brandStory h2,
+  .stepsSection h2,
+  .salesContact h2,
+  .contactNote h2,
+  .universalCta h2 {
+    font-size:clamp(36px,10.5vw,47px);
+    line-height:.98;
+  }
+
+  .sectionHeader > span {
+    font-size:13px;
+    line-height:1.5;
+  }
+
+  .catalogSection,
+  .brandProducts,
+  .audienceSection,
+  .officesSection {
+    width:auto;
+    padding:64px 16px 76px;
+  }
+
+  .catalogMobileFilter {
+    position:sticky;
+    z-index:18;
+    top:calc(68px + env(safe-area-inset-top));
+    margin:34px -16px 0;
+    padding:10px 16px;
+    display:grid;
+    gap:7px;
+    border-block:1px solid var(--line-dark);
+    background:rgba(251,245,232,.97);
+    backdrop-filter:blur(14px);
+  }
+
+  .catalogMobileFilter span {
+    color:rgba(16,44,34,.58);
+    font-size:8px;
+    font-weight:850;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+
+  .catalogMobileFilter select {
+    width:100%;
+    min-height:46px;
+    padding:0 42px 0 14px;
+    border:1px solid var(--line-dark);
+    border-radius:9px;
+    color:var(--night);
+    background:var(--sand-light);
+    font-size:16px;
+    font-weight:750;
+  }
+
+  .catalogFilters {
+    display:none;
+  }
+
+  .catalogResult {
+    margin:16px 0 12px;
+    text-align:left;
+    font-size:10px;
+  }
+
+  .catalogGrid {
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  .mobileHidden {
+    display:none;
+  }
+
+  .catalogMore {
+    width:100%;
+    min-height:54px;
+    margin-top:14px;
+    padding:0 18px;
+    border:1px solid var(--line-dark);
+    border-radius:999px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:var(--night);
+    background:transparent;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:850;
+  }
+
+  .productCard {
+    min-width:0;
+    display:grid;
+    grid-template-columns:116px minmax(0,1fr);
+    border:1px solid var(--line-dark);
+    border-radius:12px;
+    overflow:hidden;
+    background:rgba(255,255,255,.22);
+  }
+
+  .productCard.mobileHidden {
+    display:none;
+  }
+
+  .productMedia {
+    width:100%;
+    height:188px;
+    min-height:0;
+    align-self:start;
+    border-right:1px solid var(--line-dark);
+    background:rgba(16,44,34,.045);
+  }
+
+  .productMedia > span {
+    top:10px;
+    left:10px;
+    font-size:10px;
+  }
+
+  .productMedia > small {
+    top:10px;
+    right:8px;
+    font-size:6px;
+  }
+
+  .productMedia img {
+    width:96%;
+    height:90%;
+    transform:none;
+  }
+
+  .productInfo {
+    min-width:0;
+    padding:15px 13px 12px;
+  }
+
+  .productInfo > p:first-child {
+    font-size:7px;
+  }
+
+  .productInfo h2 {
+    margin-top:7px;
+    font-size:20px;
+    line-height:1.02;
+    overflow-wrap:anywhere;
+  }
+
+  .productInfo > p:nth-child(3) {
+    display:none;
+  }
+
+  .productInfo dl {
+    margin-top:13px;
+    padding-top:11px;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px 8px;
+  }
+
+  .productInfo dd {
+    font-size:11px;
+  }
+
+  .productDetails {
+    margin-top:11px;
+  }
+
+  .productDetails summary {
+    min-height:44px;
+    padding:0;
+    font-size:9px;
+  }
+
+  .productDetails > p {
+    padding-bottom:10px;
+    font-size:11px;
+    line-height:1.45;
+  }
+
+  .universalCta {
+    min-height:0;
+    padding:64px 18px 72px;
+    grid-template-columns:1fr;
+    gap:32px;
+  }
+
+  .universalCta > div:last-child > p {
+    font-size:15px;
+  }
+
+  .universalCta button {
+    min-height:54px;
+    margin-top:22px;
+  }
+
+  .brandStory {
+    min-height:0;
+    padding:64px 18px;
+    gap:30px;
+  }
+
+  .brandStory > div:first-child {
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+  }
+
+  .brandStory > div:nth-child(2) > p {
+    margin-top:20px;
+    font-size:15px;
+    line-height:1.6;
+  }
+
+  .brandStory aside {
+    padding:22px;
+  }
+
+  .brandStory aside p {
+    margin-top:12px;
+    font-size:17px;
+  }
+
+  .brandProducts {
+    padding-inline:16px;
+  }
+
+  .brandProductGrid {
+    margin-top:40px;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:30px 10px;
+  }
+
+  .brandProductMedia {
+    height:180px;
+  }
+
+  .brandProductGrid article > p {
+    margin-top:13px;
+    font-size:7px;
+  }
+
+  .brandProductGrid h3 {
+    margin-top:6px;
+    font-size:18px;
+    line-height:1.08;
+  }
+
+  .brandProductGrid article > div:last-child {
+    margin-top:9px;
+    gap:4px;
+    flex-wrap:wrap;
+  }
+
+  .brandProductGrid article > div:last-child span {
+    padding:5px 7px;
+    font-size:8px;
+  }
+
+  .logoSection {
+    width:auto;
+    padding:64px 12px 76px;
+  }
+
+  .logoSection .sectionHeader {
+    padding-inline:6px;
+  }
+
+  .logoWall {
+    margin-top:36px;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+  }
+
+  .logoTile {
+    min-height:170px;
+    padding:13px;
+    border:1px solid var(--line-dark);
+    border-radius:12px;
+  }
+
+  .logoArtwork {
+    min-height:94px;
+    padding:10px;
+  }
+
+  .logoArtwork img {
+    height:74px;
+  }
+
+  .logoArtwork strong {
+    font-size:clamp(22px,7vw,31px);
+  }
+
+  .logoHint {
+    justify-content:center;
+    font-size:0;
+  }
+
+  .logoHint::before {
+    content:"О бренде";
+    font-size:8px;
+  }
+
+  .brandDialog {
+    width:100%;
+    max-width:none;
+    height:auto;
+    max-height:calc(100dvh - 8px - env(safe-area-inset-top));
+    margin:auto 0 0;
+    border-radius:20px 20px 0 0;
+  }
+
+  .brandDialog article {
+    min-height:0;
+    max-height:calc(100dvh - 8px - env(safe-area-inset-top));
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+  }
+
+  .brandDialogVisual {
+    flex:0 0 min(29dvh,230px);
+    min-height:190px;
+  }
+
+  .brandDialogVisual::before {
+    inset:8% 23%;
+  }
+
+  .brandDialogVisual img {
+    width:72%;
+    height:95%;
+  }
+
+  .brandDialogCopy {
+    min-height:0;
+    padding:22px 18px calc(18px + env(safe-area-inset-bottom));
+    overflow-y:auto;
+  }
+
+  .brandDialogCopy h2 {
+    margin-top:9px;
+    padding-right:40px;
+    font-size:clamp(38px,11vw,48px);
+  }
+
+  .brandDialogCopy > strong {
+    margin-top:16px;
+    font-size:17px;
+    line-height:1.32;
+  }
+
+  .brandDialogCopy > p:nth-of-type(2) {
+    margin-top:12px;
+    font-size:13px;
+    line-height:1.55;
+  }
+
+  .brandDialogCopy dl {
+    margin-top:18px;
+    padding-block:13px;
+  }
+
+  .brandDialogActions {
+    margin-top:18px;
+    padding-top:0;
+    gap:8px;
+  }
+
+  .brandDialogActions a,
+  .brandDialogActions button {
+    min-height:48px;
+  }
+
+  .audienceGrid {
+    margin-top:40px;
+    gap:10px;
+  }
+
+  .audienceGrid article {
+    min-height:280px;
+    padding:22px;
+    border-radius:12px;
+  }
+
+  .audienceGrid h2 {
+    font-size:39px;
+  }
+
+  .audienceGrid article > p:nth-child(4) {
+    margin-top:16px;
+  }
+
+  .audienceGrid button {
+    min-height:48px;
+    margin-top:20px;
+  }
+
+  .stepsSection {
+    padding:64px 18px 72px;
+  }
+
+  .stepsTrack {
+    margin-top:46px;
+  }
+
+  .stepsTrack article,
+  .stepsTrack article:not(:first-child) {
+    padding:27px 0 27px 54px;
+  }
+
+  .stepsTrack article > span,
+  .stepsTrack article:not(:first-child) > span {
+    top:25px;
+    left:0;
+  }
+
+  .stepsTrack h3 {
+    font-size:28px;
+  }
+
+  .stepsTrack p {
+    margin-top:10px;
+    font-size:13px;
+  }
+
+  .salesContact {
+    min-height:0;
+    padding:64px 18px 72px;
+    grid-template-columns:1fr;
+    gap:32px;
+  }
+
+  .salesContact a {
+    min-height:44px;
+    display:flex;
+    align-items:center;
+    font-size:clamp(22px,7vw,29px);
+  }
+
+  .salesContact button {
+    min-height:52px;
+    margin-top:16px;
+  }
+
+  .officeGrid {
+    margin-top:40px;
+    gap:10px;
+  }
+
+  .officeGrid article {
+    min-height:320px;
+    padding:22px;
+    border-radius:12px;
+  }
+
+  .officeGrid h2 {
+    font-size:40px;
+  }
+
+  .officeGrid a {
+    min-height:46px;
+    margin-top:24px;
+  }
+
+  .contactNote {
+    min-height:0;
+    padding:72px 18px;
+  }
+
+  .contactNote button {
+    min-height:52px;
+    margin-top:28px;
+  }
+
+  .legalLayout {
+    width:auto;
+    padding:52px 18px 76px;
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+
+  .legalLayout aside {
+    position:static;
+    display:flex;
+    gap:7px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+
+  .legalLayout aside::-webkit-scrollbar { display:none; }
+  .legalLayout aside > p { display:none; }
+
+  .legalLayout aside a {
+    min-height:44px;
+    padding:0 12px;
+    flex:0 0 auto;
+    border:1px solid var(--line-dark);
+    border-radius:999px;
+    font-size:10px;
+  }
+
+  .legalCopy section {
+    padding:18px 0 42px;
+    grid-template-columns:34px 1fr;
+  }
+
+  .legalCopy h2 {
+    font-size:30px;
+  }
+
+  .legalCopy p {
+    margin-top:20px;
+    font-size:15px;
+    line-height:1.65;
+  }
+
+  .legalCopy section:last-child a {
+    min-height:44px;
+    display:inline-flex;
+    align-items:center;
+    vertical-align:middle;
+  }
+}
+
+@media (max-width:350px) {
+  .heroCopy {
+    padding-inline:14px;
+  }
+
+  .heroCopy h1 {
+    font-size:38px;
+  }
+
+  .productCard {
+    grid-template-columns:98px minmax(0,1fr);
+  }
+
+  .productMedia {
+    height:180px;
+  }
+
+  .productInfo {
+    padding-inline:11px;
+  }
+
+  .productInfo h2 {
+    font-size:18px;
+  }
+
+  .logoTile {
+    min-height:158px;
+    padding:10px;
+  }
+
+  .logoArtwork img {
+    height:66px;
+  }
+
+  .brandProductMedia {
+    height:160px;
+  }
+}
+
+@media (orientation:landscape) and (max-height:520px) and (max-width:950px) {
+  .innerHero {
+    min-height:480px;
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+  }
+
+  .heroCopy {
+    padding:40px 24px;
+  }
+
+  .heroCopy h1 {
+    font-size:clamp(40px,6.2vw,56px);
+  }
+
+  .heroVisual,
+  .catalogVisual,
+  .brandHeroVisual,
+  .partnersVisual,
+  .logoHeroMark,
+  .legalHero .heroVisual {
+    min-height:400px;
+  }
+
+  .heroStrip {
+    grid-column:1 / -1;
+  }
+
+  .catalogMobileFilter {
+    top:84px;
+  }
+}

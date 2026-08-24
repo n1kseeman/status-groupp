@@ -2642,3 +2642,193 @@ h2 em {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Mobile-first clarity pass */
+@media (max-width: 760px) {
+  html {
+    scroll-padding-top: calc(76px + env(safe-area-inset-top));
+  }
+
+  body::before {
+    opacity: 0.035;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  .site-header {
+    height: calc(68px + env(safe-area-inset-top));
+    padding: env(safe-area-inset-top) 14px 0;
+  }
+
+  .wordmark {
+    gap: 9px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+  }
+
+  .wordmark-mark {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .mobile-menu summary {
+    width: 46px;
+    height: 46px;
+  }
+
+  .mobile-menu nav {
+    top: calc(68px + env(safe-area-inset-top));
+    max-height: calc(100dvh - 68px - env(safe-area-inset-top));
+    padding: 10px 16px calc(20px + env(safe-area-inset-bottom));
+    gap: 0;
+    overflow-y: auto;
+    border-bottom: 0;
+    background: var(--paper-bright);
+    box-shadow: 0 26px 60px rgba(8, 29, 21, 0.28);
+  }
+
+  .mobile-menu nav a,
+  .mobile-menu nav button {
+    min-height: 52px;
+    font-size: 16px;
+  }
+
+  .mobile-menu nav button {
+    min-height: 50px;
+    margin-top: 12px;
+  }
+
+  .site-footer {
+    padding: 52px 20px calc(20px + env(safe-area-inset-bottom));
+  }
+
+  .footer-top,
+  .footer-contact {
+    gap: 28px;
+  }
+
+  .footer-top {
+    padding-bottom: 36px;
+  }
+
+  .footer-top > p {
+    font-size: 19px;
+  }
+
+  .footer-links {
+    gap: 4px 22px;
+  }
+
+  .footer-links a,
+  .footer-contact a {
+    min-height: 44px;
+  }
+
+  .footer-contact {
+    padding: 28px 0;
+    gap: 20px;
+  }
+
+  .footer-contact a:first-of-type {
+    font-size: 22px;
+  }
+
+  .footer-bottom {
+    padding-top: 20px;
+    gap: 10px;
+    flex-direction: column;
+    line-height: 1.5;
+  }
+
+  .age-gate {
+    align-items: end;
+    padding: 8px 8px 0;
+  }
+
+  .age-gate-card {
+    width: 100%;
+    max-height: calc(100dvh - 8px - env(safe-area-inset-top));
+    padding: 46px 18px calc(20px + env(safe-area-inset-bottom));
+    border-radius: 22px 22px 0 0;
+    text-align: left;
+  }
+
+  .age-gate-card .eyebrow {
+    justify-content: flex-start;
+  }
+
+  .age-gate-card h2 {
+    margin-top: 14px;
+    font-size: clamp(34px, 10vw, 42px);
+  }
+
+  .age-gate-card > p:not(.eyebrow) {
+    margin-top: 12px;
+    font-size: 14px;
+  }
+
+  .age-gate-card .button {
+    margin-top: 22px;
+  }
+
+  .age-gate-mark {
+    top: 14px;
+    right: 16px;
+  }
+
+  .price-dialog {
+    width: 100%;
+    max-width: none;
+    max-height: calc(100dvh - 8px - env(safe-area-inset-top));
+    margin: auto 0 0;
+    padding: 34px 16px calc(18px + env(safe-area-inset-bottom));
+    border-radius: 22px 22px 0 0;
+    overflow-y: auto;
+  }
+
+  .price-dialog h2 {
+    margin-top: 12px;
+    padding-right: 42px;
+    font-size: clamp(34px, 10vw, 42px);
+  }
+
+  .price-dialog > p:not(.eyebrow) {
+    margin-top: 10px;
+  }
+
+  .price-dialog form {
+    margin-top: 20px;
+  }
+
+  .price-dialog input,
+  .price-dialog textarea {
+    min-height: 48px;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .price-dialog textarea {
+    min-height: 82px;
+  }
+
+  .dialog-close {
+    top: 12px;
+    right: 12px;
+  }
+}
+
+@media (max-width: 350px) {
+  .site-header {
+    padding-inline: 10px;
+  }
+
+  .footer-links {
+    grid-template-columns: 1fr;
+  }
+}

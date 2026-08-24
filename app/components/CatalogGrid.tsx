@@ -12,6 +12,7 @@ const filters = [{ value: "all", label: "Все бренды" }, ...brands.map((
 
 export function CatalogGrid({ products }: { products: Product[] }) {
   const [active, setActive] = useState("all");
+  const [visibleCount, setVisibleCount] = useState(12);
   const visible = useMemo(
     () => (active === "all" ? products : products.filter((product) => product.brand === active)),
     [active, products],
@@ -19,6 +20,14 @@ export function CatalogGrid({ products }: { products: Product[] }) {
 
   return (
     <>
+      <label className={styles.catalogMobileFilter}>
+        <span>Показать бренд</span>
+        <select value={active} onChange={(event) => setActive(event.target.value)}>
+          {filters.map((filter) => (
+            <option key={filter.value} value={filter.value}>{filter.label}</option>
+          ))}
+        </select>
+      </label>
       <div className={styles.catalogFilters} role="group" aria-label="Фильтр по брендам">
         {filters.map((filter) => (
           <button
@@ -34,7 +43,10 @@ export function CatalogGrid({ products }: { products: Product[] }) {
       <p className={styles.catalogResult} aria-live="polite">Показано позиций: {visible.length}</p>
       <div className={styles.catalogGrid}>
         {visible.map((product, index) => (
-          <article className={styles.productCard} key={product.id}>
+          <article
+            className={`${styles.productCard} ${index >= visibleCount ? styles.mobileHidden : ""}`}
+            key={product.id}
+          >
             <div className={styles.productMedia}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <small>{product.country}</small>
@@ -43,7 +55,7 @@ export function CatalogGrid({ products }: { products: Product[] }) {
                 alt={product.name}
                 width={800}
                 height={1000}
-                sizes="(max-width: 620px) calc(100vw - 48px), (max-width: 1000px) 44vw, 28vw"
+                sizes="(max-width: 760px) 120px, (max-width: 1000px) 44vw, 28vw"
               />
             </div>
             <div className={styles.productInfo}>
@@ -66,6 +78,16 @@ export function CatalogGrid({ products }: { products: Product[] }) {
           </article>
         ))}
       </div>
+      {visibleCount < visible.length && (
+        <button
+          className={styles.catalogMore}
+          type="button"
+          onClick={() => setVisibleCount((count) => Math.min(count + 12, visible.length))}
+        >
+          Показать ещё {Math.min(12, visible.length - visibleCount)}
+          <span aria-hidden="true">↓</span>
+        </button>
+      )}
     </>
   );
 }
