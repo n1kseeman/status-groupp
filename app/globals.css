@@ -293,6 +293,14 @@ h2 em {
   display: none;
 }
 
+.mobile-menu nav {
+  color: var(--ink);
+}
+
+.mobile-menu nav a {
+  color: inherit;
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -2689,6 +2697,7 @@ h2 em {
     gap: 0;
     overflow-y: auto;
     border-bottom: 0;
+    color: var(--ink);
     background: var(--paper-bright);
     box-shadow: 0 26px 60px rgba(8, 29, 21, 0.28);
   }
@@ -2696,12 +2705,14 @@ h2 em {
   .mobile-menu nav a,
   .mobile-menu nav button {
     min-height: 52px;
+    color: var(--ink);
     font-size: 16px;
   }
 
   .mobile-menu nav button {
     min-height: 50px;
     margin-top: 12px;
+    color: var(--paper-bright);
   }
 
   .site-footer {

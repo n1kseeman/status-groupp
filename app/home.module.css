@@ -1444,6 +1444,17 @@
 
   .productImage {
     height: 310px;
+    padding: 24px 12px 12px;
+    place-items: center;
+  }
+
+  .productImage img {
+    position: absolute;
+    inset: 24px 12px 12px;
+    width: calc(100% - 24px);
+    height: calc(100% - 36px);
+    object-fit: contain;
+    object-position: center;
   }
 
   .productMeta h3 {
